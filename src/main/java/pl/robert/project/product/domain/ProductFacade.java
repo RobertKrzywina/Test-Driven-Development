@@ -6,7 +6,9 @@ import lombok.experimental.FieldDefaults;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.product.domain.dto.ProductDto;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -15,10 +17,10 @@ public class ProductFacade {
     InMemoryProductRepository productRepository;
 
     public void create(CreateProductDto dto) {
-        productRepository.create(ProductFactory.create(dto));
+        productRepository.create(dto);
     }
 
-    public Product read(Long id) {
+    public ProductDto read(Long id) {
         return productRepository.read(id);
     }
 
@@ -30,7 +32,7 @@ public class ProductFacade {
         productRepository.delete(id);
     }
 
-    public Page<Product> readAll(Pageable pageable) {
+    public Page<ProductDto> readAll(Pageable pageable) {
         return productRepository.readAll(pageable);
     }
 }

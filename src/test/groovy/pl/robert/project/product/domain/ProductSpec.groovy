@@ -3,6 +3,7 @@ package pl.robert.project.product.domain
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import pl.robert.project.product.domain.dto.CreateProductDto
+import pl.robert.project.product.domain.dto.ProductDto
 import pl.robert.project.product.domain.exception.ProductNotFoundException
 
 import spock.lang.Specification
@@ -50,7 +51,7 @@ class ProductSpec extends Specification {
         facade.create(new CreateProductDto(2L, 'Xiaomi'))
 
         when: 'we ask for all products'
-        Page<Product> foundProducts = facade.readAll(new PageRequest(0, 5))
+        Page<ProductDto> foundProducts = facade.readAll(new PageRequest(0, 5))
 
         then: 'system has this products'
         foundProducts.stream().count() == 2

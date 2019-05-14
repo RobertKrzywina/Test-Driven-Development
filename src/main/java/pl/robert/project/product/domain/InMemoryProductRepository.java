@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.product.domain.dto.ProductDto;
 import pl.robert.project.product.domain.exception.ProductNotFoundException;
 
 import java.util.ArrayList;
@@ -16,21 +18,22 @@ class InMemoryProductRepository {
 
     ConcurrentHashMap<Long, Product> map = new ConcurrentHashMap<>();
 
-    void create(Product product) {
-        map.put(product.getId(), product);
+    void create(CreateProductDto dto) {
+        map.put(dto.getId(), ProductFactory.create(dto));
     }
 
-    Product read(Long id) {
+    ProductDto read(Long id) {
         Product product = map.get(id);
         if (product == null) {
             throw new ProductNotFoundException(id);
         }
-        return map.get(id);
+        return map.get(id).dto();
     }
 
     void update(Long id, String name) {
         if (isProductIdNotNull(id)) {
             map.put(id, Product.builder()
+                    .id(id)
                     .name(name)
                     .build());
         }
@@ -42,8 +45,8 @@ class InMemoryProductRepository {
         }
     }
 
-    Page<Product> readAll(Pageable pageable) {
-        return new PageImpl<>(new ArrayList<>(map.values()), pageable, map.size());
+    Page<ProductDto> readAll(Pageable pageable) {
+        return new PageImpl<>(new ArrayList<>(map.values()), pageable, map.size()).map(Product::dto);
     }
 
     private boolean isProductIdNotNull(Long id) {
