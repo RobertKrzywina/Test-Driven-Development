@@ -1,14 +1,19 @@
 package pl.robert.project.product.domain
 
+import spock.lang.Shared
+import spock.lang.Specification
+
+import lombok.AccessLevel
+import lombok.experimental.FieldDefaults
+
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import pl.robert.project.product.domain.dto.CreateProductDto
+
 import pl.robert.project.product.domain.dto.ProductDto
+import pl.robert.project.product.domain.dto.CreateProductDto
 import pl.robert.project.product.domain.exception.ProductNotFoundException
 
-import spock.lang.Specification
-import spock.lang.Shared
-
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class ProductSpec extends Specification {
 
     @Shared

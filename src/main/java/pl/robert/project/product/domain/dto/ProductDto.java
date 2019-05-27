@@ -7,6 +7,6 @@ import lombok.Builder;
 @Builder
 public class ProductDto {
 
-    long id;
+    Long id;
     String name;
 }
