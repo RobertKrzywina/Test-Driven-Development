@@ -1,6 +1,7 @@
 package pl.robert.project.product.domain
 
 import spock.lang.Shared
+import spock.lang.Unroll
 import spock.lang.Specification
 
 import lombok.AccessLevel
@@ -47,7 +48,7 @@ class ProductSpec extends Specification {
         facade.read(1L)
 
         then: 'we throw an exception'
-            thrown ProductNotFoundException
+        thrown ProductNotFoundException
     }
 
     def 'Should list products'() {
@@ -60,5 +61,24 @@ class ProductSpec extends Specification {
 
         then: 'system has this products'
         foundProducts.stream().count() == 2
+    }
+
+    @Unroll
+    def 'Should throw an exception cause given product name is invalid = Product[ name = #name ]'(String name)  {
+        given:
+        dto = new CreateProductDto(name)
+
+        when: 'we try to save product'
+        facade.create(dto)
+
+        then: 'exception is thrown'
+
+        where:
+        name                                        |_
+        null                                        |_
+        1212                                        |_
+        ''                                          |_
+        '  '                                        |_
+        'thisNameOfProductIsUnfortunatelyTooLong'   |_
     }
 }
