@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain.dto;
+package pl.robert.project.server.product.domain.dto;
 
 import lombok.Getter;
 import lombok.Builder;

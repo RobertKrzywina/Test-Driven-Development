@@ -1,6 +1,6 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
-import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 class ProductFactory {
 

@@ -1,10 +1,10 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
-import pl.robert.project.product.domain.exception.ProductNotFoundException;
+import pl.robert.project.server.product.domain.exception.ProductNotFoundException;
 
 interface ProductRepository extends Repository<Product, Long> {
 

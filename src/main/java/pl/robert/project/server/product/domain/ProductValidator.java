@@ -1,13 +1,13 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import static pl.robert.project.shared.Constants.Product.COL_LENGTH_NAME;
-import static pl.robert.project.shared.Constants.Product.PRODUCT_NAME_FORMAT_REGEX;
+import static pl.robert.project.server.shared.Constants.Product.COL_LENGTH_NAME;
+import static pl.robert.project.server.shared.Constants.Product.PRODUCT_NAME_FORMAT_REGEX;
 
-import pl.robert.project.product.domain.exception.InvalidProductException;
+import pl.robert.project.server.product.domain.exception.InvalidProductException;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor

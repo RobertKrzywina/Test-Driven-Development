@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import pl.robert.project.product.domain.dto.ProductDto;
-import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.server.product.domain.dto.ProductDto;
+import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 @Transactional
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

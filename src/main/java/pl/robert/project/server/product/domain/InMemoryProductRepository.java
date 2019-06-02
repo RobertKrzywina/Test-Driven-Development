@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import pl.robert.project.product.domain.exception.ProductNotFoundException;
+import pl.robert.project.server.product.domain.exception.ProductNotFoundException;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 class InMemoryProductRepository implements ProductRepository {

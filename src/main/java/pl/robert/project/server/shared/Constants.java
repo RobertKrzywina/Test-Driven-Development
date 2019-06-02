@@ -1,4 +1,4 @@
-package pl.robert.project.shared;
+package pl.robert.project.server.shared;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

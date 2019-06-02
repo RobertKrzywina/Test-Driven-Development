@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain
+package pl.robert.project.server.product.domain
 
 import spock.lang.Shared
 import spock.lang.Unroll
@@ -10,10 +10,10 @@ import lombok.experimental.FieldDefaults
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 
-import pl.robert.project.product.domain.dto.ProductDto
-import pl.robert.project.product.domain.dto.CreateProductDto
-import pl.robert.project.product.domain.exception.InvalidProductException
-import pl.robert.project.product.domain.exception.ProductNotFoundException
+import pl.robert.project.server.product.domain.dto.ProductDto
+import pl.robert.project.server.product.domain.dto.CreateProductDto
+import pl.robert.project.server.product.domain.exception.InvalidProductException
+import pl.robert.project.server.product.domain.exception.ProductNotFoundException
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class ProductSpec extends Specification {

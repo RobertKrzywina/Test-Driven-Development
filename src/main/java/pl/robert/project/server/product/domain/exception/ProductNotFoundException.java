@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain.exception;
+package pl.robert.project.server.product.domain.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 

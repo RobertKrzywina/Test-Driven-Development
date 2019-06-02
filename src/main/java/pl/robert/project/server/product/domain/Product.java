@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +14,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-import pl.robert.project.product.domain.dto.ProductDto;
+import pl.robert.project.server.product.domain.dto.ProductDto;
 
-import static pl.robert.project.shared.Constants.Product.COL_LENGTH_NAME;
+import static pl.robert.project.server.shared.Constants.Product.COL_LENGTH_NAME;
 
 @Entity
 @Getter
