@@ -1,6 +1,7 @@
 package pl.robert.project.product.domain
 
 import spock.lang.Shared
+import spock.lang.Unroll
 import spock.lang.Specification
 
 import lombok.AccessLevel
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest
 
 import pl.robert.project.product.domain.dto.ProductDto
 import pl.robert.project.product.domain.dto.CreateProductDto
+import pl.robert.project.product.domain.exception.InvalidProductException
 import pl.robert.project.product.domain.exception.ProductNotFoundException
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -47,7 +49,7 @@ class ProductSpec extends Specification {
         facade.read(1L)
 
         then: 'we throw an exception'
-            thrown ProductNotFoundException
+        thrown ProductNotFoundException
     }
 
     def 'Should list products'() {
@@ -60,5 +62,25 @@ class ProductSpec extends Specification {
 
         then: 'system has this products'
         foundProducts.stream().count() == 2
+    }
+
+    @Unroll
+    def 'Should throw an exception cause given product name is invalid = Product[ name = #name ]'(String name)  {
+        given:
+        CreateProductDto dto = new CreateProductDto(null, name)
+
+        when: 'we try to save product'
+        facade.create(dto)
+
+        then: 'exception is thrown'
+        thrown InvalidProductException
+
+        where:
+        name                                        |_
+        null                                        |_
+        1212                                        |_
+        ''                                          |_
+        '  '                                        |_
+        'thisNameOfProductIsUnfortunatelyTooLong'   |_
     }
 }
