@@ -17,27 +17,27 @@ import pl.robert.project.product.domain.dto.CreateProductDto;
 @AllArgsConstructor
 public class ProductFacade {
 
-    ProductRepository productRepository;
+    ProductRepository repository;
     ProductValidator validator;
 
     public void create(CreateProductDto dto) {
         validator.checkInputData(dto.getName());
-        productRepository.save(ProductFactory.create(dto));
+        repository.save(ProductFactory.create(dto));
     }
 
     public ProductDto read(Long id) {
-        return productRepository.findOneOrThrow(id).dto();
+        return repository.findOneOrThrow(id).dto();
     }
 
     public void update(Long id, String name) {
-        productRepository.findOneOrThrow(id).setName(name);
+        repository.findOneOrThrow(id).setName(name);
     }
 
     public void delete(Long id) {
-        productRepository.delete(productRepository.findOneOrThrow(id));
+        repository.delete(repository.findOneOrThrow(id));
     }
 
     public Page<ProductDto> readAll(Pageable pageable) {
-        return productRepository.findAll(pageable).map(Product::dto);
+        return repository.findAll(pageable).map(Product::dto);
     }
 }

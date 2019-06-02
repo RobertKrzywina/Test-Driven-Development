@@ -10,10 +10,13 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import pl.robert.project.product.domain.dto.ProductDto;
+
+import static pl.robert.project.shared.Constants.Product.COL_LENGTH_NAME;
 
 @Entity
 @Getter
@@ -28,6 +31,7 @@ class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Column(length = COL_LENGTH_NAME, nullable = false)
     String name;
 
     ProductDto dto() {
