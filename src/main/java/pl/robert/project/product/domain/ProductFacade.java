@@ -18,8 +18,10 @@ import pl.robert.project.product.domain.dto.CreateProductDto;
 public class ProductFacade {
 
     ProductRepository productRepository;
+    ProductValidator validator;
 
     public void create(CreateProductDto dto) {
+        validator.checkInputData(dto.getName());
         productRepository.save(ProductFactory.create(dto));
     }
 

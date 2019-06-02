@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest
 
 import pl.robert.project.product.domain.dto.ProductDto
 import pl.robert.project.product.domain.dto.CreateProductDto
+import pl.robert.project.product.domain.exception.InvalidProductException
 import pl.robert.project.product.domain.exception.ProductNotFoundException
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -66,12 +67,13 @@ class ProductSpec extends Specification {
     @Unroll
     def 'Should throw an exception cause given product name is invalid = Product[ name = #name ]'(String name)  {
         given:
-        dto = new CreateProductDto(name)
+        CreateProductDto dto = new CreateProductDto(null, name)
 
         when: 'we try to save product'
         facade.create(dto)
 
         then: 'exception is thrown'
+        thrown InvalidProductException
 
         where:
         name                                        |_
