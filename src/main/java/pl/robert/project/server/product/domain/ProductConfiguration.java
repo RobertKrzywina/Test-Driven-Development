@@ -1,4 +1,4 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

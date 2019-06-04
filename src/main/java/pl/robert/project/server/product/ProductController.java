@@ -1,4 +1,4 @@
-package pl.robert.project.product;
+package pl.robert.project.server.product;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.robert.project.product.domain.ProductFacade;
-import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.server.product.domain.ProductFacade;
+import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 @RestController
 @RequestMapping("/api/product")

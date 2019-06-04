@@ -1,4 +1,7 @@
-package pl.robert.project.product.domain;
+package pl.robert.project.server.product.domain;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -6,11 +9,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.transaction.Transactional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import pl.robert.project.product.domain.dto.ProductDto;
-import pl.robert.project.product.domain.dto.CreateProductDto;
+import pl.robert.project.server.product.domain.dto.ProductDto;
+import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 @Transactional
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -37,7 +37,10 @@ public class ProductFacade {
         repository.delete(repository.findOneOrThrow(id));
     }
 
-    public Page<ProductDto> readAll(Pageable pageable) {
-        return repository.findAll(pageable).map(Product::dto);
+    public List<ProductDto> readAll() {
+        return repository.findAll()
+                .stream()
+                .map(Product::dto)
+                .collect(Collectors.toList());
     }
 }
