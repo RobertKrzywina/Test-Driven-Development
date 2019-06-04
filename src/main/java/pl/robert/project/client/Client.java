@@ -10,13 +10,16 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 import pl.robert.project.server.product.domain.ProductFacade;
 import pl.robert.project.server.product.domain.dto.ProductDto;
+import pl.robert.project.server.shared.ParameterizedException;
 import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 @Route("")
@@ -87,6 +90,10 @@ public class Client extends VerticalLayout {
 
             grid.getDataProvider().refreshAll();
         });
+
+        VaadinSession.getCurrent().setErrorHandler((handler) ->
+                Notification.show(ParameterizedException.label, 3000, Notification.Position.MIDDLE)
+        );
 
         HorizontalLayout layout = new HorizontalLayout(
             new VerticalLayout(new Label("Create"), nameField, createBtn),

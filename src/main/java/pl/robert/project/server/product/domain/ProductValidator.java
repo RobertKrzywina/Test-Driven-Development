@@ -14,20 +14,20 @@ import pl.robert.project.server.product.domain.exception.InvalidProductException
 class ProductValidator {
 
     void checkInputData(final String name) {
-        boolean isInvalid = false;
+        InvalidProductException.CAUSE cause = null;
 
         if (name == null) {
-            isInvalid = true;
+            cause = InvalidProductException.CAUSE.NULL;
         } else if (PRODUCT_NAME_FORMAT_REGEX.matcher(name).find()) {
-            isInvalid = true;
+            cause = InvalidProductException.CAUSE.FORMAT;
         } else if (name.isBlank()) {
-            isInvalid = true;
+            cause = InvalidProductException.CAUSE.BLANK;
         } else if (name.length() > COL_LENGTH_NAME) {
-            isInvalid = true;
+            cause = InvalidProductException.CAUSE.LENGTH;
         }
 
-        if (isInvalid) {
-            throw new InvalidProductException(name);
+        if (cause != null) {
+            throw new InvalidProductException(cause);
         }
     }
 }
