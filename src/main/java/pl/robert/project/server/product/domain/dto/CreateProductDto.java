@@ -16,4 +16,8 @@ public class CreateProductDto {
 
     Long id;
     String name;
+
+    public CreateProductDto(String name) {
+        this.name = name;
+    }
 }
