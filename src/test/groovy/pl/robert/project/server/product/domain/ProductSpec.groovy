@@ -7,9 +7,6 @@ import spock.lang.Specification
 import lombok.AccessLevel
 import lombok.experimental.FieldDefaults
 
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageRequest
-
 import pl.robert.project.server.product.domain.dto.ProductDto
 import pl.robert.project.server.product.domain.dto.CreateProductDto
 import pl.robert.project.server.product.domain.exception.InvalidProductException
@@ -58,10 +55,10 @@ class ProductSpec extends Specification {
         facade.create(new CreateProductDto(2L, 'Xiaomi'))
 
         when: 'we ask for all products'
-        Page<ProductDto> foundProducts = facade.readAll(new PageRequest(0, 5))
+        List<ProductDto> foundProducts = facade.readAll()
 
         then: 'system has this products'
-        foundProducts.stream().count() == 2
+        foundProducts.size() == 2
     }
 
     @Unroll

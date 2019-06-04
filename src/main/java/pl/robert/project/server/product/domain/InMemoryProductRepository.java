@@ -3,12 +3,9 @@ package pl.robert.project.server.product.domain;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 
 import pl.robert.project.server.product.domain.exception.ProductNotFoundException;
 
@@ -28,8 +25,8 @@ class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public Page<Product> findAll(Pageable pageable) {
-        return new PageImpl<>(new ArrayList<>(map.values()), pageable, map.size());
+    public List<Product> findAll() {
+        return new LinkedList<>(map.values());
     }
 
     @Override

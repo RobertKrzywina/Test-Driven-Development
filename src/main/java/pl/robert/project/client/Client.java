@@ -1,7 +1,6 @@
 package pl.robert.project.client;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -12,8 +11,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-
-import org.springframework.data.domain.PageRequest;
 
 import pl.robert.project.server.product.domain.ProductFacade;
 import pl.robert.project.server.product.domain.dto.ProductDto;
@@ -38,9 +35,7 @@ public class Client extends VerticalLayout {
     }
 
     private void addContent() {
-        List<ProductDto> products = facade.readAll(PageRequest.of(0, 10))
-                .get()
-                .collect(Collectors.toList());
+        List<ProductDto> products = facade.readAll();
 
         Grid<ProductDto> grid = new Grid<>();
 
