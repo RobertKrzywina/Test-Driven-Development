@@ -76,8 +76,22 @@ class ProductSpec extends Specification {
         name                                        |_
         null                                        |_
         1212                                        |_
+        '1212'                                      |_
         ''                                          |_
         '  '                                        |_
         'thisNameOfProductIsUnfortunatelyTooLong'   |_
+        '!@#$%^&*()'                                |_
+        'name!'                                     |_
+    }
+
+    def 'Should throw an exception cause given product name must be unique'() {
+        when: 'we save a product'
+        facade.create(new CreateProductDto(null, 'Watermelon'))
+
+        and: 'we save a product again with the same name'
+        facade.create(new CreateProductDto(null, 'Watermelon'))
+
+        then: 'exception is thrown'
+        thrown InvalidProductException.CAUSE.UNIQUE
     }
 }
