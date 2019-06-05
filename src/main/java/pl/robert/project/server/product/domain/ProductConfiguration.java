@@ -7,13 +7,16 @@ import org.springframework.context.annotation.Configuration;
 class ProductConfiguration {
 
     ProductFacade facade() {
-        return new ProductFacade(new InMemoryProductRepository(),
-                                 new ProductValidator());
+
+        InMemoryProductRepository repository = new InMemoryProductRepository();
+
+        return new ProductFacade(repository,
+                                 new ProductValidator(repository));
     }
 
     @Bean
     ProductFacade facade(ProductRepository repository) {
         return new ProductFacade(repository,
-                                 new ProductValidator());
+                                 new ProductValidator(repository));
     }
 }

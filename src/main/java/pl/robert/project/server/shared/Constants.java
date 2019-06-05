@@ -14,6 +14,6 @@ public final class Constants {
         public static final int COL_LENGTH_NAME = 35;
 
         public static final Pattern PRODUCT_NAME_FORMAT_REGEX =
-                Pattern.compile("^-?\\d+$", Pattern.CASE_INSENSITIVE);
+                Pattern.compile("^[a-zA-Z]*$", Pattern.CASE_INSENSITIVE);
     }
 }

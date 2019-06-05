@@ -30,6 +30,7 @@ public class ProductFacade {
     }
 
     public void update(Long id, String name) {
+        validator.checkInputData(name);
         repository.findOneOrThrow(id).setName(name);
     }
 

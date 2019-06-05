@@ -86,12 +86,13 @@ class ProductSpec extends Specification {
 
     def 'Should throw an exception cause given product name must be unique'() {
         when: 'we save a product'
-        facade.create(new CreateProductDto(null, 'Watermelon'))
+        facade.create(new CreateProductDto(1L, 'Watermelon'))
 
         and: 'we save a product again with the same name'
-        facade.create(new CreateProductDto(null, 'Watermelon'))
+        facade.create(new CreateProductDto(2L, 'Watermelon'))
 
         then: 'exception is thrown'
-        thrown InvalidProductException.CAUSE.UNIQUE
+        InvalidProductException exception = thrown()
+        exception.message == InvalidProductException.CAUSE.UNIQUE.message
     }
 }

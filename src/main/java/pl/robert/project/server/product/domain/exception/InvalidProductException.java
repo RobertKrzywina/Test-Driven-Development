@@ -12,9 +12,10 @@ public class InvalidProductException extends ParameterizedException {
     public enum CAUSE {
         NOT_FOUND("No product found of id "),
         NULL("Enter name of a product"),
-        FORMAT("Name of a product cannot contain numbers"),
+        FORMAT("Wrong format of a product name"),
         BLANK("Name of a product is required"),
-        LENGTH("The maximum length of a product name is 35 chars");
+        LENGTH("The maximum length of a product name is 35 chars"),
+        UNIQUE("Name of a product should be unique");
 
         String message;
     }
