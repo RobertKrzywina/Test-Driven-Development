@@ -7,7 +7,6 @@ import spock.lang.Specification
 import lombok.AccessLevel
 import lombok.experimental.FieldDefaults
 
-import pl.robert.project.server.product.domain.dto.ProductDto
 import pl.robert.project.server.product.domain.dto.CreateProductDto
 import pl.robert.project.server.product.domain.exception.InvalidProductException
 import pl.robert.project.server.product.domain.exception.ProductNotFoundException
@@ -50,24 +49,18 @@ class ProductSpec extends Specification {
     }
 
     def 'Should list products'() {
-        given: 'we add two products to system'
+        when: 'we add two products to system'
         facade.create(new CreateProductDto(1L, 'Huawei'))
         facade.create(new CreateProductDto(2L, 'Xiaomi'))
 
-        when: 'we ask for all products'
-        List<ProductDto> foundProducts = facade.readAll()
-
         then: 'system has this products'
-        foundProducts.size() == 2
+        facade.readAll().size() == 2
     }
 
     @Unroll
     def 'Should throw an exception cause given product name is invalid = Product[ name = #name ]'(String name)  {
-        given:
-        CreateProductDto dto = new CreateProductDto(null, name)
-
         when: 'we try to save product'
-        facade.create(dto)
+        facade.create(new CreateProductDto(1L, name))
 
         then: 'exception is thrown'
         thrown InvalidProductException

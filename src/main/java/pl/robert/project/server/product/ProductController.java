@@ -19,9 +19,9 @@ import pl.robert.project.server.product.domain.ProductFacade;
 import pl.robert.project.server.product.domain.dto.CreateProductDto;
 
 @RestController
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping("/api/product")
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ProductController {
 
     ProductFacade facade;

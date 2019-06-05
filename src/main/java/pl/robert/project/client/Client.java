@@ -56,6 +56,7 @@ public class Client extends VerticalLayout {
 
         createBtn.addClickListener(e -> {
             facade.create(new CreateProductDto(nameField.getValue()));
+
             products.add(new ProductDto((long) products.size() + 1, nameField.getValue()));
 
             nameField.setValue("");
@@ -69,6 +70,7 @@ public class Client extends VerticalLayout {
 
         updateBtn.addClickListener(e -> {
             facade.update(Long.parseLong(updateIdField.getValue()), newNameField.getValue());
+
             products.set((Integer.parseInt(updateIdField.getValue()) - 1),
                     new ProductDto(Long.parseLong(updateIdField.getValue()), newNameField.getValue()));
 
